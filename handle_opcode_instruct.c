@@ -60,7 +60,8 @@ void process_file_instructions(FILE *file)
 	}
 	memset(buffer, 0, count);
 
-	for (i = 0; i < count; i++) {
+	for (i = 0; i < count; i++)
+	{
 		container = (char *)malloc(sizeof(char) * 100);
 		fgets(container, sizeof(char) * 100, file);
 		bytes = strlen(container);
