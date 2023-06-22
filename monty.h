@@ -57,6 +57,7 @@ typedef struct command_s
 	struct command_s *next;
 } create_cmd;
 
+int remove_reading_space(char **buffer, char *line);
 char *break_input_line(char *line, char *separator);
 void process_args(char **opcode, char **data, char *line_ptr, char *delim);
 create_cmd *parse_opcode(create_cmd **head, char *line_ptr, char *delim);
