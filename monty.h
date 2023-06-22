@@ -56,6 +56,12 @@ typedef struct command_s
 	char *data;
 	struct command_s *next;
 } create_cmd;
+
+char *break_input_line(char *line, char *separator);
+void process_args(char **opcode, char **data, char *line_ptr, char *delim);
+create_cmd *parse_opcode(create_cmd **head, char *line_ptr, char *delim);
+
+/*string operations*/
 int _putchar_errno(char c);
 int _strlen(char *string);
 int _strcmp(char *str1, char *str2);
@@ -68,4 +74,5 @@ char *_strcpy(char *destination, char *source);
 int _atoi(char *string);
 int _putchar(char c);
 void _puts(char *str);
+
 #endif
