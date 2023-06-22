@@ -48,8 +48,8 @@ char *break_input_line(char *line, char *separator)
  * process_args - processes the arguments by allocating memory for every
  * command and all its arguments.
  * @opcode: double pointer to a opcode.
- * @args: pointer to pointer to pointer to array of arguments.
- * @line_ptr: pointer to input line to craete command and arguments from.
+ * @data: pointer to pointer to the data field from the input line.
+ * @line_ptr: pointer to input line to craete opcode and value from.
  * @delim: pointer to separator for the line to indivudual worlds.
  * Return: nothing.
 */

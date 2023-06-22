@@ -8,6 +8,7 @@
 int _strlen(char *string)
 {
 	int i = 0;
+
 	if (string == NULL)
 		return (0);
 
