@@ -63,6 +63,9 @@ void process_args(char **opcode, char **data, char *line_ptr, char *delim);
 create_cmd *parse_opcode(create_cmd **head, char *line_ptr, char *delim);
 void add_stack_element(int size, char **buffer);
 void process_file_instructions(FILE *file);
+void pall(stack_t **stack, unsigned int n __attribute__((unused)));
+void push(stack_t **stack, unsigned int num);
+void (*get_stack_operator(char *instruct))(stack_t **, unsigned int);
 
 void _free_stack(stack_t *stack);
 void free_input_array(char **buffer, int size);
