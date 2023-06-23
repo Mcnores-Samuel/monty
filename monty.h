@@ -67,9 +67,11 @@ create_cmd *parse_opcode(create_cmd **head, char *line_ptr, char *delim);
 int add_stack_element(int size, char **buffer);
 void process_file_instructions(FILE *file);
 
-int pall(stack_t **stack, unsigned int n __attribute__((unused)));
+int pall(stack_t **stack, unsigned int num __attribute__((unused)));
 int push(stack_t **stack, unsigned int num);
-int pint(stack_t **stack, unsigned int n __attribute__((unused)));
+int pint(stack_t **stack, unsigned int num);
+int pop(stack_t **stack, unsigned int num);
+
 
 int (*get_stack_operator(char *instruct))(stack_t **, unsigned int);
 

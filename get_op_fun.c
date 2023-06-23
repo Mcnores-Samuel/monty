@@ -12,6 +12,7 @@ int (*get_stack_operator(char *instruct))(stack_t **, unsigned int)
 		{"push", push},
 		{"pall", pall},
 		{"pint", pint},
+		{"pop", pop},
 		{NULL, NULL}
 	};
 

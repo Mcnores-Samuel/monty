@@ -33,6 +33,8 @@ int add_stack_element(int size, char **buffer)
 				}
 				value = atoi(head->data);
 			}
+			else
+				value = n + 1;
 			if (func_ptr(&stack, value) == -1)
 			{
 				handle_memory(head, copy_buffer, buffer, size, stack);
