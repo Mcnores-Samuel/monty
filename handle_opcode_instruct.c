@@ -6,12 +6,12 @@
  * @buffer: pointer array of strings of the buffer location in memory.
  * Return: void
  */
-void add_stack_element(int size, char **buffer)
+int add_stack_element(int size, char **buffer)
 {
 	stack_t *stack = NULL;
 	void (*func_ptr)(stack_t **, unsigned int);
 	create_cmd *head = NULL;
-	char *copy_buffer;
+	char *copy_buffer, *endptr;
 	int n, value = 0;
 
 	for (n = 0; n < size && buffer[n] != NULL; n++)
@@ -25,14 +25,36 @@ void add_stack_element(int size, char **buffer)
 		if (func_ptr != NULL)
 		{
 			if (head->data != NULL)
+			{
+				value = strtol(head->data, &endptr, 10);
+				if (head->data == endptr || *endptr != '\0')
+				{
+					fprintf(stderr, "L%d: usage: push integer\n", n + 1);
+					free(head);
+					free(copy_buffer);
+					free_input_array(buffer, size);
+					_free_stack(stack);
+					return (-1);
+				}
 				value = atoi(head->data);
+			}
 			func_ptr(&stack, value);
+		}
+		else
+		{
+			fprintf(stderr, "L%d: unknown instruction %s\n", n + 1, head->opcode);
+			free(head);
+			free(copy_buffer);
+			free_input_array(buffer, size);
+			_free_stack(stack);
+			return (-1);
 		}
 		free(head);
 		free(copy_buffer);
 		head = NULL;
 	}
 	_free_stack(stack);
+	return (0);
 }
 
 /**
@@ -73,6 +95,10 @@ void process_file_instructions(FILE *file)
 		_strncpy(buffer[i], final, _strlen(final));
 		buffer[i][bytes] = '\0';
 	}
-	add_stack_element(count, buffer);
+	if (add_stack_element(count, buffer) == -1)
+	{
+		fclose(file);
+		exit(EXIT_FAILURE);
+	}
 	free_input_array(buffer, count);
 }
