@@ -1,5 +1,18 @@
 #include "monty.h"
 
+int is_int(create_cmd *h, int n, char *c, char **buf, int num, stack_t *s)
+{
+	char *endptr;
+
+	strtol(h->data, &endptr, 10);
+	if (h->data == endptr || *endptr != '\0')
+	{
+		fprintf(stderr, "L%d: usage: push integer\n", n + 1);
+		handle_memory(h, c, buf, num, s);
+		return (-1);
+	}
+	return (0);
+}
 /**
  * add_stack_element - adds an item of element to the stack.
  * @size: number of element in buffer array.
@@ -11,7 +24,7 @@ int add_stack_element(int size, char **buffer)
 	stack_t *stack = NULL;
 	int (*func_ptr)(stack_t **, unsigned int);
 	create_cmd *head = NULL;
-	char *copy_buffer, *endptr;
+	char *copy_buffer;
 	int n, value = 0;
 
 	for (n = 0; n < size && buffer[n] != NULL; n++)
@@ -24,13 +37,8 @@ int add_stack_element(int size, char **buffer)
 		{
 			if (head->data != NULL)
 			{
-				value = strtol(head->data, &endptr, 10);
-				if (head->data == endptr || *endptr != '\0')
-				{
-					fprintf(stderr, "L%d: usage: push integer\n", n);
-					handle_memory(head, copy_buffer, buffer, size, stack);
+				if (is_int(head, n, copy_buffer, buffer, size, stack) == -1)
 					return (-1);
-				}
 				value = atoi(head->data);
 			}
 			else
@@ -38,12 +46,12 @@ int add_stack_element(int size, char **buffer)
 			if (func_ptr(&stack, value) == -1)
 			{
 				handle_memory(head, copy_buffer, buffer, size, stack);
-				return(-1);
+				return (-1);
 			}
 		}
 		else
 		{
-			fprintf(stderr, "L%d: unknown instruction %s\n", n, head->opcode);
+			fprintf(stderr, "L%d: unknown instruction %s\n", n + 1, head->opcode);
 			handle_memory(head, copy_buffer, buffer, size, stack);
 			return (-1);
 		}
@@ -106,7 +114,7 @@ void process_file_instructions(FILE *file)
  * @h: pointer to head node containing opcode instructions.
  * @copy: pointer to the copy of the buffer element at n position.
  * @buf: pointer to arrays of characters or strings.
- * @n: number elements in buffer or buf
+ * @num: number elements in buffer or buf
  * @s: pointer to head node of the stack.
  */
 void handle_memory(create_cmd *h, char *copy, char **buf, int num, stack_t *s)

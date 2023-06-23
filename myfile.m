@@ -1,3 +1,4 @@
 push 98
-pop
+push 45
+pash
 pall

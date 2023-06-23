@@ -1,6 +1,5 @@
 #include "monty.h"
 
-int n = 0;
 
 /**
  * push - pushes an element to the stack
@@ -82,7 +81,7 @@ int pint(stack_t **stack, unsigned int num)
  * pop - removes the top element of the stack.
  * @stack: double pointer to the head node of the stack.
  * @num: line number i the instruction file.
- * @Return: 1 on success or -1 otherwise and error is set.
+ * Return: 1 on success or -1 otherwise and error is set.
  */
 int pop(stack_t **stack, unsigned int num)
 {
