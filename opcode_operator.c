@@ -95,15 +95,10 @@ int pop(stack_t **stack, unsigned int num)
 	}
 	else
 	{
-		top = *stack;
 		second = (*stack)->next;
-		if (second == NULL)
-		{
-			free(top);
-			*stack = NULL;
-		}
-		free(top);
-		second->prev = NULL;
+		if (second != NULL)
+			second->prev = NULL;
+		free(*stack);
 		*stack = second;
 	}
 
