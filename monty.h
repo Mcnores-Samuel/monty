@@ -1,6 +1,8 @@
 #ifndef MONTY_H
 #define MONTY_H
 
+extern int n;
+
 #define _POSIX_C_SOURCE 200809L
 #include <stdio.h>
 #include <stdlib.h>
@@ -9,6 +11,7 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
+
 #define MALLLOC_ERR "Error: malloc failed"
 #define USAGE_ERR "USAGE: monty file"
 #define FILE_ERR "Error: Can't open file "
@@ -39,7 +42,7 @@ typedef struct stack_s
 typedef struct instruction_s
 {
 	char *opcode;
-	void (*f)(stack_t **stack, unsigned int line_number);
+	int (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
 /**
@@ -63,14 +66,16 @@ void process_args(char **opcode, char **data, char *line_ptr, char *delim);
 create_cmd *parse_opcode(create_cmd **head, char *line_ptr, char *delim);
 int add_stack_element(int size, char **buffer);
 void process_file_instructions(FILE *file);
-void pall(stack_t **stack, unsigned int n __attribute__((unused)));
-void push(stack_t **stack, unsigned int num);
-void (*get_stack_operator(char *instruct))(stack_t **, unsigned int);
+
+int pall(stack_t **stack, unsigned int n __attribute__((unused)));
+int push(stack_t **stack, unsigned int num);
+int pint(stack_t **stack, unsigned int n __attribute__((unused)));
+
+int (*get_stack_operator(char *instruct))(stack_t **, unsigned int);
 
 void _free_stack(stack_t *stack);
 void free_input_array(char **buffer, int size);
-void handle_memory(create_cmd *head, char *copy_buffer,\
-		char **buffer, int size, stack_t *stack);
+void handle_memory(create_cmd *h, char *copy, char **buf, int num, stack_t *s);
 
 /*string operations*/
 int _putchar_errno(char c);

@@ -9,7 +9,7 @@
 int add_stack_element(int size, char **buffer)
 {
 	stack_t *stack = NULL;
-	void (*func_ptr)(stack_t **, unsigned int);
+	int (*func_ptr)(stack_t **, unsigned int);
 	create_cmd *head = NULL;
 	char *copy_buffer, *endptr;
 	int n, value = 0;
@@ -27,17 +27,21 @@ int add_stack_element(int size, char **buffer)
 				value = strtol(head->data, &endptr, 10);
 				if (head->data == endptr || *endptr != '\0')
 				{
-					fprintf(stderr, "L%d: usage: push integer\n", n + 1);
+					fprintf(stderr, "L%d: usage: push integer\n", n);
 					handle_memory(head, copy_buffer, buffer, size, stack);
 					return (-1);
 				}
 				value = atoi(head->data);
 			}
-			func_ptr(&stack, value);
+			if (func_ptr(&stack, value) == -1)
+			{
+				handle_memory(head, copy_buffer, buffer, size, stack);
+				return(-1);
+			}
 		}
 		else
 		{
-			fprintf(stderr, "L%d: unknown instruction %s\n", n + 1, head->opcode);
+			fprintf(stderr, "L%d: unknown instruction %s\n", n, head->opcode);
 			handle_memory(head, copy_buffer, buffer, size, stack);
 			return (-1);
 		}
@@ -103,10 +107,10 @@ void process_file_instructions(FILE *file)
  * @n: number elements in buffer or buf
  * @s: pointer to head node of the stack.
  */
-void handle_memory(create_cmd *h, char *copy, char **buf, int n, stack_t *s)
+void handle_memory(create_cmd *h, char *copy, char **buf, int num, stack_t *s)
 {
 	free(h);
 	free(copy);
-	free_input_array(buf, n);
+	free_input_array(buf, num);
 	_free_stack(s);
 }

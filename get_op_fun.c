@@ -5,12 +5,13 @@
  * @instruct: the string to match or opcode instructions.
  * Return: pointer to the function of the matching opcode instruction.
  */
-void (*get_stack_operator(char *instruct))(stack_t **, unsigned int)
+int (*get_stack_operator(char *instruct))(stack_t **, unsigned int)
 {
 	int i = 0;
 	instruction_t builtins[] = {
 		{"push", push},
 		{"pall", pall},
+		{"pint", pint},
 		{NULL, NULL}
 	};
 
