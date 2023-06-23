@@ -1,5 +1,15 @@
 #include "monty.h"
 
+/**
+ * is_int - checks is input string contains integers
+ * @h: pointer to head node containing opcode instructions.
+ * @n: line number of the instruction in a file.
+ * @c: pointer to the copy of the buffer element at n position.
+ * @buf: pointer to arrays of characters or strings.
+ * @num: number elements in buffer or buf
+ * @s: pointer to head node of the stack.
+ * Return: 0 if contains integer or -1 otherwise.
+ */
 int is_int(create_cmd *h, int n, char *c, char **buf, int num, stack_t *s)
 {
 	char *endptr;
@@ -116,7 +126,8 @@ void process_file_instructions(FILE *file)
  * @buf: pointer to arrays of characters or strings.
  * @num: number elements in buffer or buf
  * @s: pointer to head node of the stack.
- */
+ * Return: void
+*/
 void handle_memory(create_cmd *h, char *copy, char **buf, int num, stack_t *s)
 {
 	free(h);
