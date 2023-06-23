@@ -1,12 +1,10 @@
-push 12
-push 34
-push 76
+push 1
+pint
 pop
+push 2
+pint
 pop
-push 45
-push 34
-pall
-pop
-pop
+push 3
+pint
 pop
 pall

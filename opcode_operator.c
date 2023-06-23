@@ -99,8 +99,8 @@ int pop(stack_t **stack, unsigned int num)
 		second = (*stack)->next;
 		if (second == NULL)
 		{
-			fprintf(stderr, "L%d: can't pint, stack empty\n", num);
-			return (-1);
+			free(top);
+			*stack = NULL;
 		}
 		free(top);
 		second->prev = NULL;
