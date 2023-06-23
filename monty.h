@@ -69,6 +69,8 @@ void (*get_stack_operator(char *instruct))(stack_t **, unsigned int);
 
 void _free_stack(stack_t *stack);
 void free_input_array(char **buffer, int size);
+void handle_memory(create_cmd *head, char *copy_buffer,\
+		char **buffer, int size, stack_t *stack);
 
 /*string operations*/
 int _putchar_errno(char c);

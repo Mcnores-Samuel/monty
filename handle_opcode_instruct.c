@@ -18,9 +18,7 @@ int add_stack_element(int size, char **buffer)
 	{
 		if (buffer[n] != NULL)
 			copy_buffer = _strdup(buffer[n]);
-
 		parse_opcode(&head, copy_buffer, " ");
-
 		func_ptr = get_stack_operator(head->opcode);
 		if (func_ptr != NULL)
 		{
@@ -30,10 +28,7 @@ int add_stack_element(int size, char **buffer)
 				if (head->data == endptr || *endptr != '\0')
 				{
 					fprintf(stderr, "L%d: usage: push integer\n", n + 1);
-					free(head);
-					free(copy_buffer);
-					free_input_array(buffer, size);
-					_free_stack(stack);
+					handle_memory(head, copy_buffer, buffer, size, stack);
 					return (-1);
 				}
 				value = atoi(head->data);
@@ -43,10 +38,7 @@ int add_stack_element(int size, char **buffer)
 		else
 		{
 			fprintf(stderr, "L%d: unknown instruction %s\n", n + 1, head->opcode);
-			free(head);
-			free(copy_buffer);
-			free_input_array(buffer, size);
-			_free_stack(stack);
+			handle_memory(head, copy_buffer, buffer, size, stack);
 			return (-1);
 		}
 		free(head);
@@ -101,4 +93,20 @@ void process_file_instructions(FILE *file)
 		exit(EXIT_FAILURE);
 	}
 	free_input_array(buffer, count);
+}
+
+/**
+ * handle_memory - frees all memory allocated if unexpexted behaviour occured.
+ * @h: pointer to head node containing opcode instructions.
+ * @copy: pointer to the copy of the buffer element at n position.
+ * @buf: pointer to arrays of characters or strings.
+ * @n: number elements in buffer or buf
+ * @s: pointer to head node of the stack.
+ */
+void handle_memory(create_cmd *h, char *copy, char **buf, int n, stack_t *s)
+{
+	free(h);
+	free(copy);
+	free_input_array(buf, n);
+	_free_stack(s);
 }

@@ -1,4 +1,5 @@
 push 10
 pall
-push a
+push 12
 pall
+pint
