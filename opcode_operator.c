@@ -89,7 +89,7 @@ int pop(stack_t **stack, unsigned int num)
 
 	if (top == NULL)
 	{
-		fprintf(stderr, "L%d: can't pint, stack empty\n", num);
+		fprintf(stderr, "L%d: can't pop an empty stack\n", num);
 		return (-1);
 	}
 	else
