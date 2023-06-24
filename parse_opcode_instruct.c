@@ -113,7 +113,6 @@ int parse_opcode(create_cmd **head, char *line_ptr, char *delim)
 		new_node->next = *head;
 		*head = new_node;
 	}
-
 	if (_strcmp((*head)->opcode, "void") == 0)
 		return (-1);
 	return (1);

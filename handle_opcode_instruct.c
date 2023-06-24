@@ -12,13 +12,29 @@
 int is_int(create_cmd *h, int n, char **buf, int num, stack_t *s)
 {
 	char *endptr;
+	char str[10] = {'\0'};
 
-	strtol(h->data, &endptr, 10);
-	if (h->data == endptr || *endptr != '\0')
+	if (h->data != NULL && _strcmp(h->opcode, "push") == 0)
 	{
-		fprintf(stderr, "L%d: usage: push integer\n", n + 1);
-		handle_memory(h, buf, num, s);
-		return (-1);
+		strtol(h->data, &endptr, 10);
+		if (h->data == endptr || *endptr != '\0')
+		{
+			fprintf(stderr, "L%d: usage: push integer\n", n + 1);
+			handle_memory(h, buf, num, s);
+			return (-1);
+		}
+	}
+	else if (h->data == NULL && _strcmp(h->opcode, "push") == 0)
+	{
+			fprintf(stderr, "L%d: usage: push integer\n", n + 1);
+			handle_memory(h, buf, num, s);
+			return (-1);
+	}
+	else
+	{
+		n = n + 1;
+		sprintf(str, "%d", n);
+		h->data = _strdup(str);
 	}
 	return (0);
 }
@@ -45,14 +61,10 @@ int add_stack_element(int size, char **buffer)
 		func_ptr = get_stack_operator(head->opcode);
 		if (func_ptr != NULL)
 		{
+			if (is_int(head, n, buffer, size, stack) == -1)
+				return (-1);
 			if (head->data != NULL)
-			{
-				if (is_int(head, n, buffer, size, stack) == -1)
-					return (-1);
 				value = atoi(head->data);
-			}
-			else
-				value = n + 1;
 			if (func_ptr(&stack, value) == -1)
 			{
 				handle_memory(head, buffer, size, stack);
