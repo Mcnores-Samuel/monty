@@ -4,7 +4,6 @@
  * is_int - checks is input string contains integers
  * @h: pointer to head node containing opcode instructions.
  * @n: line number of the instruction in a file.
- * @c: pointer to the copy of the buffer element at n position.
  * @buf: pointer to arrays of characters or strings.
  * @num: number elements in buffer or buf
  * @s: pointer to head node of the stack.
@@ -32,9 +31,8 @@ int is_int(create_cmd *h, int n, char **buf, int num, stack_t *s)
 int add_stack_element(int size, char **buffer)
 {
 	stack_t *stack = NULL;
-	int (*func_ptr)(stack_t **, unsigned int);
+	int (*func_ptr)(stack_t **, unsigned int), n, value = 0;
 	create_cmd *head = NULL;
-	int n, value = 0;
 
 	for (n = 0; n < size && buffer[n] != NULL; n++)
 	{
@@ -123,7 +121,6 @@ void process_file_instructions(FILE *file)
 /**
  * handle_memory - frees all memory allocated if unexpexted behaviour occured.
  * @h: pointer to head node containing opcode instructions.
- * @copy: pointer to the copy of the buffer element at n position.
  * @buf: pointer to arrays of characters or strings.
  * @num: number elements in buffer or buf
  * @s: pointer to head node of the stack.
