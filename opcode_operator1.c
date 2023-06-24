@@ -45,7 +45,7 @@ int nop(stack_t **stack, unsigned int num)
  */
 int sub(stack_t **stack, unsigned int num)
 {
-	int n = num;
+	int sub_num;
 
 	if (*stack == NULL || (*stack)->next == NULL)
 	{
@@ -53,9 +53,15 @@ int sub(stack_t **stack, unsigned int num)
 		return (-1);
 	}
 
-	num = abs((*stack)->n - (*stack)->next->n);
-	pop(stack, n);
-	pop(stack, n);
-	push(stack, num);
+	sub_num = (*stack)->n - (*stack)->next->n;
+
+	if (sub_num > 0)
+		sub_num = sub_num * -1;
+	else
+		sub_num = sub_num * -1;
+
+	pop(stack, num);
+	pop(stack, num);
+	push(stack, sub_num);
 	return (1);
 }
