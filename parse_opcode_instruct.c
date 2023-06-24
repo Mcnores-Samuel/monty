@@ -65,7 +65,7 @@ void process_args(char **opcode, char **data, char *line_ptr, char *delim)
 			break;
 		if (*opcode == NULL)
 		{
-			if (_strcmp(token, "pall") == 0)
+			if (_strcmp(token, "pall") == 0 || _strcmp(token, "div") == 0)
 			{
 				*opcode = token;
 				break;

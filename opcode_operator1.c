@@ -74,7 +74,7 @@ int sub(stack_t **stack, unsigned int num)
  */
 int _div(stack_t **stack, unsigned int num)
 {
-	int n = num;
+	int num1, num2, result;
 
 	if (*stack == NULL || (*stack)->next == NULL)
 	{
@@ -87,10 +87,16 @@ int _div(stack_t **stack, unsigned int num)
 		fprintf(stderr, "L%d: division by zero\n", num);
 		return (-1);
 	}
-
-	num = (*stack)->n / (*stack)->next->n;
-	pop(stack, n);
-	pop(stack, n);
-	push(stack, num);
+	
+	num1 = (*stack)->n;
+	num2 = (*stack)->next->n;
+	if (num2 > num1)
+		result = num2 / num1;
+	else
+		result = num1 / num2;
+	printf("%d / %d == %d\n", num1, num2, result);
+	pop(stack, num);
+	pop(stack, num);
+	push(stack, result);
 	return (1);
 }
