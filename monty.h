@@ -73,7 +73,7 @@ int pop(stack_t **stack, unsigned int num);
 int swap(stack_t **stack, unsigned int num);
 int add(stack_t **stack, unsigned int num);
 int nop(stack_t **stack, unsigned int num);
-
+int sub(stack_t **stack, unsigned int num);
 
 
 int (*get_stack_operator(char *instruct))(stack_t **, unsigned int);
