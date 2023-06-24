@@ -73,7 +73,10 @@ void process_args(char **opcode, char **data, char *line_ptr, char *delim)
 			*opcode = token;
 		}
 		else
-			*data = token;
+			if (*data == NULL)
+				if (token != NULL)
+					*data = token;
+
 		token = break_input_line(NULL, delim);
 	}
 }
