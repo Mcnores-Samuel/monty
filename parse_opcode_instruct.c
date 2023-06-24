@@ -64,9 +64,19 @@ void process_args(char **opcode, char **data, char *line_ptr, char *delim)
 		if (token == NULL)
 			break;
 		if (*opcode == NULL)
+		{
+			if (_strcmp(token, "pall") == 0)
+			{
+				*opcode = token;
+				break;
+			}
 			*opcode = token;
+		}
 		else
-			*data = token;
+			if (*data == NULL)
+				if (token != NULL)
+					*data = token;
+
 		token = break_input_line(NULL, delim);
 	}
 }
@@ -79,17 +89,20 @@ void process_args(char **opcode, char **data, char *line_ptr, char *delim)
  * @delim: pointer to the separator
  * Return: node created.
 */
-create_cmd *parse_opcode(create_cmd **head, char *line_ptr, char *delim)
+int parse_opcode(create_cmd **head, char *line_ptr, char *delim)
 {
 	create_cmd *new_node = NULL;
 
 	if (*line_ptr == '\0' || line_ptr == NULL)
-		return (NULL);
+		return (-1);
 
 	new_node = (create_cmd *)malloc(sizeof(create_cmd));
 
 	if (new_node == NULL)
+	{
+		fprintf(stderr, "%s\n", MALLLOC_ERR);
 		exit(EXIT_FAILURE);
+	};
 
 	new_node->opcode = NULL;
 	new_node->data = NULL;
@@ -100,5 +113,8 @@ create_cmd *parse_opcode(create_cmd **head, char *line_ptr, char *delim)
 		new_node->next = *head;
 		*head = new_node;
 	}
-	return (new_node);
+
+	if (_strcmp((*head)->opcode, "void") == 0)
+		return (-1);
+	return (1);
 }

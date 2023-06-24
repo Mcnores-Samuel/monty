@@ -26,7 +26,7 @@ char *_strncpy(char *dest, char *src, int n)
 
 	return (dest);
 }
-​
+
 /**
  * _strstr - finds the first occurrence of the substring in the main string.
  * @mainstr: pointer to the main string.
