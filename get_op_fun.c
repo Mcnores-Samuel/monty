@@ -18,6 +18,7 @@ int (*get_stack_operator(char *instruct))(stack_t **, unsigned int)
 		{"nop", nop},
 		{"sub", sub},
 		{"div", _div},
+		{"mul", mul},
 		{NULL, NULL}
 	};
 

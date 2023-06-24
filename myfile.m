@@ -1,4 +1,4 @@
-push 402
 push 98
-div Holberton
+push 402
+mul Holberton
 pall
