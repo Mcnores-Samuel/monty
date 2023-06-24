@@ -12,7 +12,7 @@ int main(int argc, char **argv)
 
 	FILE *file;
 
-	if (argc < 2)
+	if (argc < 2 || argc > 2)
 	{
 		fprintf(stderr, "%s\n", USAGE_ERR);
 		exit(EXIT_FAILURE);
