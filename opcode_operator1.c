@@ -1,7 +1,14 @@
 #include "monty.h"
 
+/**
+ * add - adds the top two elements of the stack.
+ * @stack: double pointer to the head node of the stack.
+ * @num: line numbers from the instruction file.
+ * Return: 1 on success or -1 otherwise.
+ */
 int add(stack_t **stack, unsigned int num)
 {
+	int n = num;
 
 	if (*stack == NULL || (*stack)->next == NULL)
 	{
@@ -9,6 +16,8 @@ int add(stack_t **stack, unsigned int num)
 	}
 
 	num = (*stack)->n + (*stack)->next->n;
-	printf(" after add: %d\n", num);
+	pop(stack, n);
+	pop(stack, n);
+	push(stack, num);
 	return (1);
 }
