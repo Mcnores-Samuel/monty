@@ -53,7 +53,7 @@ int sub(stack_t **stack, unsigned int num)
 		return (-1);
 	}
 
-	num = (*stack)->n - (*stack)->next->n;
+	num = abs((*stack)->n - (*stack)->next->n);
 	pop(stack, n);
 	pop(stack, n);
 	push(stack, num);
