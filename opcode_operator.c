@@ -103,3 +103,34 @@ int pop(stack_t **stack, unsigned int num)
 
 	return (1);
 }
+
+/**
+ * swap -  swaps the top two elements of the stack.
+ * @stack: double pointer to head node of the stack.
+ * @num: line number from the instruction file.
+ * Return: 1 if success or -1 otherwise.
+ */
+int swap(stack_t **stack, unsigned int num)
+{
+	stack_t *top, *second, *third;
+
+	if (*stack == NULL || (*stack)->next == NULL)
+	{
+		fprintf(stderr, "L%d: can't swap, stack too short\n", num);
+		return (-1);
+	}
+
+	top = *stack;
+	second = (*stack)->next;
+	third = second->next;
+
+	second->prev = NULL;
+	second->next = top;
+	top->prev = second;
+	top->next = third;
+
+	if (third != NULL)
+		third->prev = top;
+	*stack = second;
+	return (1);
+}

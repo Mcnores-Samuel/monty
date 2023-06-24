@@ -70,6 +70,8 @@ int pall(stack_t **stack, unsigned int num __attribute__((unused)));
 int push(stack_t **stack, unsigned int num);
 int pint(stack_t **stack, unsigned int num);
 int pop(stack_t **stack, unsigned int num);
+int swap(stack_t **stack, unsigned int num);
+
 
 
 int (*get_stack_operator(char *instruct))(stack_t **, unsigned int);
