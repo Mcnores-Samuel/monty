@@ -26,9 +26,9 @@ int is_int(create_cmd *h, int n, char **buf, int num, stack_t *s)
 	}
 	else if (h->data == NULL && _strcmp(h->opcode, "push") == 0)
 	{
-			fprintf(stderr, "L%d: usage: push integer\n", n + 1);
-			handle_memory(h, buf, num, s);
-			return (-1);
+		fprintf(stderr, "L%d: usage: push integer\n", n + 1);
+		handle_memory(h, buf, num, s);
+		return (-1);
 	}
 	else
 	{
