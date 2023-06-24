@@ -77,6 +77,9 @@ int add_stack_element(int size, char **buffer)
 			handle_memory(head, buffer, size, stack);
 			return (-1);
 		}
+		if (head->data != NULL)
+			free(head->data);
+		head->data = NULL;
 		free(head);
 		head = NULL;
 	}
