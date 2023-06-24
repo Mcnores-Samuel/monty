@@ -27,7 +27,12 @@ void free_input_array(char **buffer, int size)
 {
 	int i;
 
-	for (i = 0; i < size; i++)
-		free(buffer[i]);
-	free(buffer);
+	if (buffer != NULL)
+	{
+		for (i = 0; i < size; i++)
+			if (buffer[i] != NULL)
+				free(buffer[i]);
+		free(buffer);
+		buffer = NULL;
+	}
 }
