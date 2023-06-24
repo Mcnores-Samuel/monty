@@ -94,7 +94,6 @@ int _div(stack_t **stack, unsigned int num)
 		result = num2 / num1;
 	else
 		result = num1 / num2;
-	printf("%d / %d == %d\n", num1, num2, result);
 	pop(stack, num);
 	pop(stack, num);
 	push(stack, result);
