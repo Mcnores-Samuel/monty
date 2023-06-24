@@ -64,7 +64,14 @@ void process_args(char **opcode, char **data, char *line_ptr, char *delim)
 		if (token == NULL)
 			break;
 		if (*opcode == NULL)
+		{
+			if (_strcmp(token, "pall") == 0)
+			{
+				*opcode = token;
+				break;
+			}
 			*opcode = token;
+		}
 		else
 			*data = token;
 		token = break_input_line(NULL, delim);
