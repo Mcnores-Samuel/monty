@@ -22,3 +22,17 @@ int add(stack_t **stack, unsigned int num)
 	push(stack, num);
 	return (1);
 }
+
+/**
+ * nop - doesn't do anything.
+ * @stack: double pointer to the head node of the stack.
+ * @num: line numbers from the instruction file.
+ * Return: 1 signalling success.
+ */
+int nop(stack_t **stack, unsigned int num)
+{
+	(void)stack;
+	(void)num;
+
+	return (1);
+}

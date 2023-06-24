@@ -72,6 +72,7 @@ int pint(stack_t **stack, unsigned int num);
 int pop(stack_t **stack, unsigned int num);
 int swap(stack_t **stack, unsigned int num);
 int add(stack_t **stack, unsigned int num);
+int nop(stack_t **stack, unsigned int num);
 
 
 
