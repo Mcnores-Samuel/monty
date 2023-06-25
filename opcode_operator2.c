@@ -35,3 +35,31 @@ int mod(stack_t **stack, unsigned int num)
 	return (1);
 }
 
+/**
+ * pchar - Prints the char at the top of the stack,
+ * followed by a new line.
+ * @stack: double pointer to head node of the stack.
+ * @num: unused number.
+ * Return: 1 on success or -1 otherwise
+ */
+int pchar(stack_t **stack, unsigned int num)
+{
+	stack_t *tmp = *stack;
+
+	if (tmp == NULL)
+	{
+		fprintf(stderr, "L%d: can't pchar, stack empty\n", num);
+		return (-1);
+	}
+
+	if (tmp->n < 0 || tmp->n > 127)
+	{
+		fprintf(stderr, "L%d: can't pchar, value out of range\n", num);
+		return (-1);
+	}
+
+	if (tmp->n >= 0 && tmp->n <= 127)
+		printf("%c\n", tmp->n);
+
+	return (1);
+}
