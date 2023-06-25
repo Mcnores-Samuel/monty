@@ -22,7 +22,7 @@ int mod(stack_t **stack, unsigned int num)
 		fprintf(stderr, "L%d: division by zero\n", num);
 		return (-1);
 	}
-	
+
 	num1 = (*stack)->n;
 	num2 = (*stack)->next->n;
 	if (num2 > num1)
@@ -60,6 +60,33 @@ int pchar(stack_t **stack, unsigned int num)
 
 	if (tmp->n >= 0 && tmp->n <= 127)
 		printf("%c\n", tmp->n);
+
+	return (1);
+}
+
+/**
+ * pstr - prints the string starting at the top of the stack.
+ * @stack: double pointer to head node of the stack.
+ * @num: unused number.
+ * Return: 1 on success or -1 otherwise
+ */
+int pstr(stack_t **stack, unsigned int num __attribute__((unused)))
+{
+	stack_t *tmp = *stack;
+
+	if (tmp == NULL)
+		return (1);
+
+	while (tmp != NULL)
+	{
+		if (tmp->n == 0)
+			break;
+
+		if (tmp->n > 0 && tmp->n <= 127)
+			printf("%c", tmp->n);
+		tmp = tmp->next;
+	}
+	printf("\n");
 
 	return (1);
 }

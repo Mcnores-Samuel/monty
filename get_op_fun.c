@@ -9,19 +9,13 @@ int (*get_stack_operator(char *instruct))(stack_t **, unsigned int)
 {
 	int i = 0;
 	instruction_t builtins[] = {
-		{"push", push},
-		{"pall", pall},
-		{"pint", pint},
-		{"pop", pop},
-		{"swap", swap},
-		{"add", add},
-		{"nop", nop},
-		{"sub", sub},
-		{"div", _div},
-		{"mul", mul},
-		{"mod", mod},
-		{"pchar", pchar},
-		{NULL, NULL}
+		{"push", push}, {"pall", pall},
+		{"pint", pint}, {"pop", pop},
+		{"swap", swap}, {"add", add},
+		{"nop", nop}, {"sub", sub},
+		{"div", _div}, {"mul", mul},
+		{"mod", mod}, {"pchar", pchar},
+		{"pstr", pstr}, {NULL, NULL}
 	};
 
 	while (builtins[i].opcode != NULL)

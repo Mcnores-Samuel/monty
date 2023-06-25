@@ -67,7 +67,7 @@ int sub(stack_t **stack, unsigned int num)
 }
 
 /**
- * div - devides the top two elements of the stack.
+ * _div - devides the top two elements of the stack.
  * @stack: double pointer to the head node of the stack.
  * @num: line numbers from the instruction file.
  * Return: 1 on success or -1 otherwise.
@@ -87,7 +87,7 @@ int _div(stack_t **stack, unsigned int num)
 		fprintf(stderr, "L%d: division by zero\n", num);
 		return (-1);
 	}
-	
+
 	num1 = (*stack)->n;
 	num2 = (*stack)->next->n;
 	if (num2 > num1)
