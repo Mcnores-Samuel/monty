@@ -76,6 +76,7 @@ int nop(stack_t **stack, unsigned int num);
 int sub(stack_t **stack, unsigned int num);
 int _div(stack_t **stack, unsigned int num);
 int mul(stack_t **stack, unsigned int num);
+int mod(stack_t **stack, unsigned int num);
 
 int (*get_stack_operator(char *instruct))(stack_t **, unsigned int);
 
