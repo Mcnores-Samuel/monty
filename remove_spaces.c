@@ -15,7 +15,7 @@ int remove_reading_space(char *buffer, char *line)
 		if (buffer[i] != ' ' && buffer[i] != '\0')
 			break;
 
-	if (buffer[i] == '\0')
+	if (buffer[i] == '\0' || buffer[i] == '#')
 	{
 		_strcpy(line, "void");
 		return (0);
