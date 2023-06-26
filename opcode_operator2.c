@@ -84,7 +84,7 @@ int pstr(stack_t **stack, unsigned int num __attribute__((unused)))
 	{
 		while (tmp != NULL)
 		{
-			if (tmp->n == 0)
+			if (tmp->n == 0 || tmp->n < 0)
 				break;
 			if (tmp->n > 0 && tmp->n <= 127)
 				printf("%c", tmp->n);
