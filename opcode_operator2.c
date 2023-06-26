@@ -75,7 +75,10 @@ int pstr(stack_t **stack, unsigned int num __attribute__((unused)))
 	stack_t *tmp = *stack;
 
 	if (tmp == NULL)
+	{
+		printf("\n");
 		return (1);
+	}
 
 	if (tmp->n > 0 && tmp->n <= 127)
 	{
@@ -87,7 +90,7 @@ int pstr(stack_t **stack, unsigned int num __attribute__((unused)))
 				printf("%c", tmp->n);
 			tmp = tmp->next;
 		}
-		printf("\n");
 	}
+	printf("\n");
 	return (1);
 }
