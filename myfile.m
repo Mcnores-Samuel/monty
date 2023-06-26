@@ -29,4 +29,6 @@ push 67
 push 68
 pstr
 rotl
+push 87
+rotr
 pall
