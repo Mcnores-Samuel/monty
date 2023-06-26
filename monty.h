@@ -45,12 +45,10 @@ typedef struct instruction_s
 } instruction_t;
 
 /**
- * struct command_s - the structure store a commmand and arguments
- * @command: command name or simply a command.
- * @argument: Array of arguments of the command.
+ * struct command_s - opcode and it's value.
+ * @opcode: command name or simply a command.
+ * @opcode: value to be added to the stack.
  * @next: pointer to the next node.
- * Description: Every command and the arguments are craeted as a node
- * at each command call.
  */
 typedef struct command_s
 {
@@ -80,6 +78,7 @@ int mod(stack_t **stack, unsigned int num);
 int pchar(stack_t **stack, unsigned int num);
 int pstr(stack_t **stack, unsigned int num __attribute__((unused)));
 int rotl(stack_t **stack, unsigned int num __attribute__((unused)));
+int rotr(stack_t **stack, unsigned int num __attribute__((unused)));
 
 int (*get_stack_operator(char *instruct))(stack_t **, unsigned int);
 
