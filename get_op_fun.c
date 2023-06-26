@@ -15,7 +15,8 @@ int (*get_stack_operator(char *instruct))(stack_t **, unsigned int)
 		{"nop", nop}, {"sub", sub},
 		{"div", _div}, {"mul", mul},
 		{"mod", mod}, {"pchar", pchar},
-		{"pstr", pstr}, {NULL, NULL}
+		{"pstr", pstr}, {"rotl", rotl},
+		{NULL, NULL}
 	};
 
 	while (builtins[i].opcode != NULL)

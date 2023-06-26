@@ -79,7 +79,7 @@ int mul(stack_t **stack, unsigned int num);
 int mod(stack_t **stack, unsigned int num);
 int pchar(stack_t **stack, unsigned int num);
 int pstr(stack_t **stack, unsigned int num __attribute__((unused)));
-
+int rotl(stack_t **stack, unsigned int num __attribute__((unused)));
 
 int (*get_stack_operator(char *instruct))(stack_t **, unsigned int);
 

@@ -68,7 +68,7 @@ int pchar(stack_t **stack, unsigned int num)
  * pstr - prints the string starting at the top of the stack.
  * @stack: double pointer to head node of the stack.
  * @num: unused number.
- * Return: 1 on success or -1 otherwise
+ * Return: 1 on success, never fails.
  */
 int pstr(stack_t **stack, unsigned int num __attribute__((unused)))
 {
@@ -94,5 +94,39 @@ int pstr(stack_t **stack, unsigned int num __attribute__((unused)))
 		}
 	}
 	printf("\n");
+	return (1);
+}
+
+
+/**
+ * rotl -rotates the stack to the top
+ * @stack: double pointer to head node of the stack.
+ * @num: unused number.
+ * Return: 1 on success, never fails.
+ */
+int rotl(stack_t **stack, unsigned int num __attribute__((unused)))
+{
+	stack_t *tmp = *stack, *top_to_be, *last_to_be;
+
+	if (tmp == NULL)
+		return (1);
+
+	if (tmp != NULL && tmp->next == NULL)
+		return (1);
+
+	top_to_be = (*stack)->next;
+	top_to_be->prev = NULL;
+
+	while (tmp->next != NULL)
+		tmp = tmp->next;
+
+	last_to_be = *stack;
+
+	if (tmp != NULL)
+	{
+		tmp->next = last_to_be;
+		last_to_be->next = NULL;
+		*stack = top_to_be;
+	}
 	return (1);
 }
